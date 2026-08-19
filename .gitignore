@@ -44,3 +44,8 @@ next-env.d.ts
 /.clerk/
 
 /src/generated/prisma
+
+# AI coding tool configuration
+.agents/
+.claude/
+.windsurf/
