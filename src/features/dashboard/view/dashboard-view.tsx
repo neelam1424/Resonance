@@ -4,7 +4,7 @@ import { DashboardHeader } from "@/features/dashboard/components/dashboard-heade
 import { TextInputPanel } from "../components/text-input-panel";
 import { QuickActionsPanel } from "../components/quick-actions-panel";
 
-export function DashboardView(){
+export function  DashboardView(){
     return(
         <div className="relative">
             <PageHeader title="Dashboard" className="lg:hidden" />

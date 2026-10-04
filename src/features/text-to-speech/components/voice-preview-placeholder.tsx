@@ -31,7 +31,7 @@ export function VoicePreviewPlaceholder() {
         </p>
       </div>
       <Button variant="outline" size="sm" asChild>
-        <Link href="mailto:business@codewithantonio.com">
+        <Link href="mailto:neelammore1404@gmail.com">
           <BookOpen />
           Don&apos;t know how?
         </Link>
