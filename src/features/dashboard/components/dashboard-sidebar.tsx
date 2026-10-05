@@ -33,9 +33,6 @@ import {
   Headphones,
 } from "lucide-react";
 import Link from "next/link";
-// import { UsageContainer } from "@/features/billing/components/usage-container";
-// import { VoiceCreateDialog } from "@/features/voices/components/voice-create-dialog";
-import { useState } from "react";
 
 interface MenuItem {
   title: string;
@@ -49,7 +46,7 @@ interface NavSectionProps {
   items: MenuItem[];
   pathname: string;
 };
-// The NavSection component is responsible for rendering a section of the sidebar navigation. It takes in a label, an array of menu items, and the current pathname as props. Each menu item can have a title, an optional URL, an icon, and an optional onClick handler. The component uses the SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, and SidebarMenuButton components to structure the navigation section. It also determines if a menu item is active based on the current pathname and applies appropriate styles.
+
 function NavSection({ label, items, pathname }: NavSectionProps) {
   return (
     <SidebarGroup>
@@ -98,7 +95,6 @@ function NavSection({ label, items, pathname }: NavSectionProps) {
 export function DashboardSidebar() {
   const pathname = usePathname();
   const clerk = useClerk();
-  const [voiceDialogOpen, setVoiceDialogOpen] = useState(false);
 
   const mainMenuItems: MenuItem[] = [
     {
@@ -119,7 +115,6 @@ export function DashboardSidebar() {
     {
       title: "Voice cloning",
       icon: Volume2,
-      onClick: () => setVoiceDialogOpen(true),
     },
   ];
 
@@ -131,17 +126,12 @@ export function DashboardSidebar() {
     },
     {
       title: "Help and support",
-      url: "mailto:neelammore1404@gmail.com",
+      url: "mailto:business@codewithantonio.com",
       icon: Headphones,
     },
   ];
 
   return (
-    <>
-    {/* <VoiceCreateDialog
-      open={voiceDialogOpen}
-      onOpenChange={setVoiceDialogOpen}
-    /> */}
     <Sidebar collapsible="icon">
       <SidebarHeader className="flex flex-col gap-4 pt-4">
         <div 
@@ -167,7 +157,6 @@ export function DashboardSidebar() {
                   className="h-8.5 w-full group-data-[collapsible=icon]:size-8 rounded-md border bg-white"
                 />
               }
-              //When the sidebar is collapsed, the organization switcher will only show the icon and hide the text. The appearance prop allows us to customize the styles of the organization switcher components.
               appearance={{
                 elements: {
                   rootBox: 
@@ -198,7 +187,6 @@ export function DashboardSidebar() {
       </SidebarContent>
       <div className="border-b border-dashed border-border" />
       <SidebarFooter className="gap-3 py-3">
-        {/* <UsageContainer /> */}
         <SidebarMenu>
           <SidebarMenuItem>
             <UserButton
@@ -223,6 +211,5 @@ export function DashboardSidebar() {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-    </>
   );
 }
