@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+<h1>Resonance</h1>
+
+<p>The open-source ElevenLabs alternative.</p>
+
+<p>AI-powered text-to-speech and voice cloning built with Next.js 16, React 19, and Chatterbox TTS.</p>
+
+<br />
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://resonance-production-1229.up.railway.app/)
+
+<br />
+
+<p>
+  <a href="https://cwa.run/clerk"><img src="https://img.shields.io/badge/Clerk-6C47FF?style=for-the-badge&logo=clerk&logoColor=white" alt="Clerk" /></a>&nbsp;
+  <a href="https://cwa.run/polar"><img src="https://img.shields.io/badge/Polar-000000?style=for-the-badge&logo=polar&logoColor=white" alt="Polar" /></a>&nbsp;
+  <a href="https://cwa.run/railway"><img src="https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white" alt="Railway" /></a>&nbsp;
+  <a href="https://cwa.run/prisma"><img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" /></a>
+</p>
+
+</div>
+
+
+## Features
+
+- **Text-to-Speech**  - Generate speech from text with adjustable creativity, variety, expression, and flow parameters
+- **Zero-Shot Voice Cloning**  - Upload or record a voice sample (10s minimum) and clone it instantly  - no fine-tuning required
+- **20 Built-in Voices**  - Pre-seeded system voices across 12 categories and 5 locales
+- **Waveform Audio Player**  - WaveSurfer.js visualization with seek, play/pause, and download
+- **Multi-Tenant**  - Team-based access via Clerk Organizations with full data isolation
+- **Usage-Based Billing**  - Pay-as-you-go character metering with configurable pricing via Polar products and meters
+- **Generation History**  - Browse and replay past generations with preserved voice metadata
+- **Fully Responsive**  - Mobile-first with bottom drawers, compact controls, and adaptive layouts
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js **20.9** or later
+- [Prisma Postgres](https://cwa.run/prisma) database
+- [Clerk](https://cwa.run/clerk) account (with Organizations enabled)
+- [Cloudflare R2](https://cwa.run/cloudflare-r2) bucket
+- [Modal](https://cwa.run/modal) account (for GPU-hosted TTS)
+- [Polar](https://cwa.run/polar) account (for billing)
+
+
+## Self-Hosting
+
+Resonance is designed to be self-hosted. You'll need:
+
+1. **A PostgreSQL database**  - [Prisma Postgres](https://cwa.run/prisma) (recommended), or any managed Postgres
+2. **Cloudflare R2**  - For audio storage (S3-compatible, generous free tier)
+3. **Modal**  - For serverless GPU inference (pay-per-second billing)
+4. **Clerk**  - For authentication and multi-tenancy
+5. **Polar**  - For metered billing (use sandbox mode with card `4242 4242 4242 4242` for testing)
+
+Deploy the Next.js app to any Node.js host (Railway, Docker, etc.).
+
+## Project Structure
+
+```
+src/
+├── app/                        # Next.js App Router
+│   ├── (dashboard)/            # Protected routes (home, TTS, voices)
+│   ├── api/                    # Audio proxy routes + tRPC handler
+│   ├── sign-in/                # Clerk auth pages
+│   └── sign-up/
+├── components/                 # Shared UI components (shadcn/ui + custom)
+├── features/
+│   ├── dashboard/              # Home page, quick actions
+│   ├── text-to-speech/         # TTS form, audio player, settings, history
+│   ├── voices/                 # Voice library, creation, recording
+│   └── billing/                # Usage display, checkout
+├── hooks/                      # App-wide hooks
+├── lib/                        # Core: db, r2, polar, env, chatterbox client
+├── trpc/                       # tRPC routers, client, server helpers
+├── generated/                  # Prisma client
+└── types/                      # Generated API types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Lint with ESLint |
+| `npm run sync-api` | Regenerate Chatterbox API types from OpenAPI spec |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Acknowledgements
 
-## Learn More
+- [Chatterbox TTS](https://github.com/resemble-ai/chatterbox) by Resemble AI - the open-source zero-shot voice cloning model powering speech generation
+- [Modal](https://cwa.run/modal-tts) - serverless GPU deployment example and [voice sample pack](https://modal-cdn.com/blog/audio/chatterbox-tts-voices.zip)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+https://resonance-production-1229.up.railway.app/
